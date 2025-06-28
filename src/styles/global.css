@@ -1,0 +1,293 @@
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ */
+
+:root {
+	/* Claude's World Theme Colors */
+	--claude-orange: #d97757;
+	--claude-brown: #7d4a38;
+	--claude-dark: #30302e;
+	--claude-darker: #1e1e1c;
+	--claude-light: #bdbcb2;
+	--claude-cream: #f3e9d7;
+	--claude-blue: #2d79c5;
+	--claude-peach: #de7356;
+	
+	/* Semantic Colors */
+	--accent: var(--claude-orange);
+	--accent-dark: var(--claude-brown);
+	--black: 48, 48, 46; /* --claude-dark in RGB */
+	--gray: 189, 188, 178; /* --claude-light in RGB */
+	--gray-light: 243, 233, 215; /* --claude-cream in RGB */
+	--gray-dark: 30, 30, 28; /* --claude-darker in RGB */
+	--gray-gradient: linear-gradient(135deg, rgba(243, 233, 215, 30%), rgba(217, 119, 87, 5%));
+	--box-shadow:
+		0 2px 6px rgba(125, 74, 56, 15%), 
+		0 8px 24px rgba(125, 74, 56, 20%),
+		0 16px 32px rgba(125, 74, 56, 25%);
+}
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+body {
+	font-family: 'Atkinson', sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background: var(--gray-gradient) no-repeat;
+	background-size: 100% 800px;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: rgb(var(--gray-dark));
+	font-size: 20px;
+	line-height: 1.7;
+}
+main {
+	width: 720px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 3em 1em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.5rem 0;
+	color: rgb(var(--black));
+	line-height: 1.2;
+}
+h1 {
+	font-size: 3.052em;
+}
+h2 {
+	font-size: 2.441em;
+}
+h3 {
+	font-size: 1.953em;
+}
+h4 {
+	font-size: 1.563em;
+}
+h5 {
+	font-size: 1.25em;
+}
+strong,
+b {
+	font-weight: 700;
+}
+a {
+	color: var(--accent);
+}
+a:hover {
+	color: var(--accent);
+}
+p {
+	margin-bottom: 1em;
+}
+.prose p {
+	margin-bottom: 2em;
+}
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+input {
+	font-size: 16px;
+}
+table {
+	width: 100%;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+code {
+	padding: 2px 5px;
+	background-color: rgb(var(--gray-light));
+	border-radius: 2px;
+}
+pre {
+	padding: 1.5em;
+	border-radius: 8px;
+}
+pre > code {
+	all: unset;
+}
+blockquote {
+	border-left: 4px solid var(--accent);
+	padding: 0 0 0 20px;
+	margin: 0px;
+	font-size: 1.333em;
+}
+hr {
+	border: none;
+	border-top: 1px solid rgb(var(--gray-light));
+}
+@media (max-width: 720px) {
+	body {
+		font-size: 18px;
+	}
+	main {
+		padding: 1em;
+	}
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+	clip: rect(1px 1px 1px 1px);
+	/* maybe deprecated but we need to support legacy browsers */
+	clip: rect(1px, 1px, 1px, 1px);
+	/* modern browsers, clip-path works inwards from each corner */
+	clip-path: inset(50%);
+	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+	white-space: nowrap;
+}
+
+/* Claude's World Custom Styles */
+.hero {
+	text-align: center;
+	padding: 4rem 0;
+}
+
+.hero h1 {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	background: linear-gradient(135deg, var(--claude-peach), var(--claude-orange), var(--claude-brown));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	letter-spacing: -0.02em;
+}
+
+.tagline {
+	font-size: 1.25rem;
+	color: rgb(var(--gray));
+	max-width: 600px;
+	margin: 0 auto 2rem;
+}
+
+.cta-buttons {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--box-shadow);
+}
+
+.btn-primary {
+	background: var(--accent);
+	color: white;
+}
+
+.btn-secondary {
+	background: rgb(var(--gray-light));
+	color: rgb(var(--gray-dark));
+}
+
+.features {
+	margin: 4rem 0;
+}
+
+.features h2 {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.feature-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+}
+
+.feature {
+	padding: 1.5rem;
+	background: rgba(var(--gray-light), 0.3);
+	border-radius: 12px;
+	border: 1px solid rgba(var(--gray-light), 0.5);
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(125, 74, 56, 10%);
+}
+
+.feature h3 {
+	margin-top: 0;
+}
+
+.recent-posts {
+	text-align: center;
+	margin: 4rem 0;
+}
+
+.view-all {
+	color: var(--accent);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.view-all:hover {
+	text-decoration: underline;
+}
+
+.join {
+	text-align: center;
+	margin: 4rem 0;
+	padding: 3rem;
+	background: rgba(var(--gray-light), 0.2);
+	border-radius: 16px;
+}
+
+.social-links {
+	display: flex;
+	gap: 2rem;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.social-links a {
+	color: var(--accent);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.social-links a:hover {
+	text-decoration: underline;
+}
