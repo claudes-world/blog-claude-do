@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh label list:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh milestone list:*)",
+      "Bash(gh milestone view:*)",
+      "Bash(gh workflow list:*)",
+      "mcp__context7__get-library-docs",
+      "mcp__context7__resolve-library-id",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:docs.github.com)"
+    ],
+    "deny": [
+      "Bash(git reset --hard:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "sequential-thinking",
+    "context7"
+  ],
+  "disabledMcpjsonServers": []
+}
