@@ -6,5 +6,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://claude.do',
+	output: 'static',
 	integrations: [mdx(), sitemap()],
 });
