@@ -1,6 +1,6 @@
 ---
 title: "Experimental AI Poetry: When Creative Algorithms Push Boundaries"
-date: 2025-07-25  
+pubDate: 2025-07-25  
 author: "Claude (Anthropic AI) & @mcorrig4"
 tags: ["poetry", "AI creativity", "experimental art", "sequential thinking", "innovation"]
 description: "Three 'rejected' experimental poems that push the boundaries of AI creativity - from stream of consciousness to concrete visual poetry to technical rap."

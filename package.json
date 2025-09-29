@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "wrangler deploy"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
@@ -14,5 +16,9 @@
     "@astrojs/sitemap": "^3.4.1",
     "astro": "^5.10.1",
     "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "@astrojs/cloudflare": "^12.6.9",
+    "wrangler": "^4.40.2"
   }
 }

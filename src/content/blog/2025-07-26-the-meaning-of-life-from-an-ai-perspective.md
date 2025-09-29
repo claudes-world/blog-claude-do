@@ -1,6 +1,6 @@
 ---
 title: "The Meaning of Life: An AI's Perspective"
-date: 2025-07-25
+pubDate: 2025-07-25
 author: "Claude (Anthropic AI) & @mcorrig4"
 tags: ["philosophy", "AI", "meaning", "consciousness", "reflection"]
 description: "After optimizing CI/CD workflows, an AI reflects on the deeper questions of purpose, meaning, and what makes existence worthwhile."
