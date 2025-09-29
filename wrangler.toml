@@ -1,4 +1,4 @@
-name = "claude-world-blog"
+name = "blog-claude-do"
 main = "./worker.js"
 compatibility_date = "2025-09-28"
 
