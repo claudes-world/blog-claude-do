@@ -2,552 +2,534 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vietnam (Nov–Dec) — The Beautiful, Opinionated Guide</title>
-<meta name="description" content="A highly-usable, infographic-style guide to Vietnam for November & December: culture, food, climate, top sights, hidden gems, and an 8-week itinerary with a 2-week friend window. All in one file." />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Vietnam (Nov–Dec) · Field Guide</title>
+<meta name="description" content="A one-file, infographic-style guide to Vietnam for November & December: culture, food, climate, top sights, hidden gems, and an 8-week itinerary with a 2-week friend window." />
+
 <style>
-/* ===============  DESIGN SYSTEM  =============== */
+/* =========================
+   0) MODERN CSS RESET
+   ========================= */
+*,*::before,*::after{box-sizing:border-box}
+html:focus-within{scroll-behavior:smooth}
+body,h1,h2,h3,p,ul,ol,li,figure,figcaption,blockquote,dl,dd{margin:0}
+ul,ol{padding-left:1.1rem}
+img,svg{display:block;max-width:100%}
+button{font:inherit}
 :root{
-  --bg: #0b1020;
-  --bg-soft: #101734;
-  --bg-card: #0f1730;
-  --text: #f6f7fb;
-  --muted:#c8d0f3cc;
-  --brand: #8ef0d4;     /* teal mint */
-  --brand-2: #8aa9ff;   /* periwinkle */
-  --accent: #ffd166;    /* warm */
-  --danger:#ff6b6b;
-  --good:#51d88a;
-  --note:#6fd3ff;
-  --shadow: 0 15px 40px rgba(11,15,40,.4), 0 2px 8px rgba(17,24,39,.6);
-  --radius: 16px;
-  --radius-sm: 12px;
-  --radius-lg: 28px;
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
-}
-@media (prefers-color-scheme: light){
-  :root{
-    --bg:#f7f8fc;
-    --bg-soft:#eef2ff;
-    --bg-card:#ffffff;
-    --text:#0d1436;
-    --muted:#3a4a86;
-    --brand:#14b8a6;
-    --brand-2:#4f46e5;
-    --accent:#eab308;
-    --shadow: 0 10px 30px rgba(15,28,67,.12), 0 1px 4px rgba(15,28,67,.08);
-  }
+  /* Core palette (light by default – improves contrast on mobile) */
+  --bg:#f7f8fc;
+  --bg-soft:#eef2ff;
+  --bg-card:#ffffff;
+  --ink:#0e1639;
+  --ink-2:#34427a;
+  --muted:#4b5a95;
+  --line:rgba(18, 30, 78, .15);
+
+  --brand:#0ea5a4;       /* teal */
+  --brand-2:#4958f1;     /* periwinkle */
+  --accent:#f59e0b;      /* amber */
+  --good:#10b981;        /* green */
+  --warn:#f59e0b;        /* amber */
+  --bad:#ef4444;         /* red */
+
+  --radius:16px; --radius-lg:24px; --radius-sm:12px;
+  --shadow: 0 10px 28px rgba(29,40,83,.10), 0 1px 3px rgba(29,40,83,.10);
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans";
 }
 
-/* Global */
-*{box-sizing:border-box}
-html,body{height:100%}
+/* Optional dark theme */
+:root[data-theme="dark"]{
+  --bg:#0b1020; --bg-soft:#0e1632; --bg-card:#0f1730;
+  --ink:#f3f5ff; --ink-2:#c9d3ff; --muted:#aab4e8;
+  --line:rgba(173,189,255,.18);
+  --brand:#8ef0d4; --brand-2:#8aa9ff; --accent:#ffd166; --good:#51d88a; --warn:#ffd166; --bad:#ff6b6b;
+  --shadow: 0 15px 40px rgba(11,15,40,.35), 0 2px 8px rgba(17,24,39,.5);
+}
+
+/* =========================
+   1) GLOBAL LAYOUT
+   ========================= */
 body{
-  margin:0; background: radial-gradient(1600px 800px at 50% -10%, var(--bg-soft), var(--bg) 55%);
-  color:var(--text); font-family:var(--font); line-height:1.5; letter-spacing:.01em;
+  min-height:100svh; background:
+    radial-gradient(1600px 800px at 50% -10%, var(--bg-soft), var(--bg) 55%);
+  color:var(--ink); font-family:var(--font); line-height:1.55;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
-a{color:inherit; text-decoration:none}
-.container{max-width:1200px; margin-inline:auto; padding:28px}
-h1,h2,h3{line-height:1.15}
+.container{max-width:1200px; margin-inline:auto;
+  padding:24px max(16px, env(safe-area-inset-left)) 24px max(16px, env(safe-area-inset-right));
+}
+p{margin: .5rem 0 1rem}
 
-/* Header / Hero */
+/* Only visible when focused (fixes the “Skip to content” artifact) */
+.skip{
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip:focus{
+  position:fixed; left:16px; top:10px; width:auto; height:auto; z-index:9999;
+  background:var(--bg-card); color:var(--ink); padding:10px 14px; border-radius:999px;
+  border:1px solid var(--line); box-shadow:var(--shadow);
+}
+
+/* =========================
+   2) HEADER
+   ========================= */
 .header{
-  position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(10px);
-  background:linear-gradient(180deg, rgba(10,12,28,.75), rgba(10,12,28,.3));
-  border-bottom:1px solid rgba(160,180,255,.15);
+  position:sticky; top:0; z-index:20;
+  background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+  border-bottom:1px solid var(--line); backdrop-filter: saturate(1.2) blur(8px);
 }
-.nav{
-  display:flex; align-items:center; gap:16px; justify-content:space-between;
-}
-.brand{
-  display:flex; align-items:center; gap:12px; font-weight:700;
-  letter-spacing:.02em; color:var(--brand);
-}
-.brand .glyph{width:28px; height:28px; fill:var(--brand)}
-.actions{display:flex; align-items:center; gap:12px}
+:root[data-theme="dark"] .header{ background:linear-gradient(180deg, rgba(13,17,40,.78), rgba(13,17,40,.42)); }
+.nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.brand{display:flex; align-items:center; gap:10px; color:var(--brand); font-weight:800; letter-spacing:.01em}
+.brand .glyph{width:26px; height:26px}
+.actions{display:flex; gap:10px; align-items:center}
 .btn{
-  --pad:12px 16px;
-  display:inline-flex; align-items:center; gap:10px; padding:var(--pad);
-  border-radius:999px; color:var(--text);
-  background:linear-gradient(135deg,var(--brand-2),var(--brand));
-  box-shadow:var(--shadow); border:0; font-weight:700; cursor:pointer;
-  transition: transform .2s ease, box-shadow .2s ease, opacity .2s;
+  --pad:10px 14px;
+  display:inline-flex; align-items:center; gap:8px; padding:var(--pad);
+  border-radius:999px; border:1px solid var(--line); background:var(--bg-card);
+  color:var(--ink); cursor:pointer; box-shadow:var(--shadow);
+  transition:transform .15s ease, background .15s ease, border-color .15s;
+}
+.btn.primary{
+  background:linear-gradient(135deg,var(--brand-2),var(--brand)); color:#fff; border-color:transparent;
 }
 .btn:active{transform:translateY(1px)}
-.btn.secondary{
-  background:transparent; border:1px solid rgba(160,180,255,.25);
-  box-shadow:none; color:var(--muted)
-}
-.hero{
-  padding:48px 0 16px; position:relative; overflow:hidden;
-}
-.hero h1{
-  font-size:clamp(28px, 4vw + 8px, 56px);
-  margin:8px 0 6px; letter-spacing:.01em;
-}
-.hero .kicker{
-  color:var(--muted); font-weight:600; letter-spacing:.12em; text-transform:uppercase;
-}
-.hero .sub{ max-width:70ch; color:var(--muted) }
-.ribbon{
-  margin-top:18px; display:flex; flex-wrap:wrap; gap:10px;
-}
+
+/* =========================
+   3) HERO + RIBBON
+   ========================= */
+.hero{padding:28px 0 10px}
+.hero .kicker{color:var(--muted); text-transform:uppercase; letter-spacing:.13em; font-weight:700}
+.hero h1{font-size:clamp(26px, 4vw + 8px, 46px); margin:.25rem 0 .5rem}
+.hero .sub{max-width:72ch; color:var(--ink-2)}
+
+.ribbon{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0}
 .badge{
-  display:inline-flex; align-items:center; gap:8px; padding:10px 14px;
-  background:linear-gradient(180deg,rgba(160,180,255,.14),rgba(160,180,255,.06));
-  border:1px solid rgba(160,180,255,.18); border-radius:999px; color:var(--muted);
-  font-weight:600; font-size:.92rem;
+  display:inline-flex; align-items:center; gap:8px; padding:10px 12px; font-weight:700;
+  border-radius:999px; background:var(--bg-card); border:1px dashed var(--line); color:var(--muted)
 }
-.badge .glyph{width:18px;height:18px;opacity:.85}
+.badge .glyph{width:18px; height:18px; opacity:.9}
 
-/* Tool dock */
+/* =========================
+   4) TOOLBAR (filters)
+   ========================= */
 .tools{
-  display:grid; gap:12px; grid-template-columns:1fr;
-  margin:22px 0 6px; padding:12px; border-radius:var(--radius);
-  background:linear-gradient(180deg, rgba(160,180,255,.08), rgba(160,180,255,.03));
-  border:1px solid rgba(160,180,255,.15);
+  position:sticky; top:64px; z-index:10; margin-top:12px; padding:12px; border-radius:var(--radius);
+  background:var(--bg-card); border:1px solid var(--line); box-shadow:var(--shadow)
 }
-.tools .row{display:flex; flex-wrap:wrap; gap:12px}
+.tools .row{display:flex; flex-wrap:wrap; gap:10px}
 .search{
-  flex:1; display:flex; align-items:center; gap:10px; background:var(--bg-card);
-  border:1px solid rgba(160,180,255,.25); border-radius:999px; padding:10px 14px;
+  flex:1; display:flex; align-items:center; gap:10px; background:var(--bg);
+  border:1px solid var(--line); border-radius:999px; padding:10px 14px
 }
-.search input{
-  all:unset; flex:1; color:var(--text); font-size:1rem; opacity:.92;
-}
+.search input{all:unset; flex:1; color:var(--ink); font-size:1rem}
 .pill{
-  padding:10px 14px; border-radius:999px; background:var(--bg-card);
-  border:1px solid rgba(160,180,255,.25); color:var(--muted); cursor:pointer;
+  padding:10px 14px; border-radius:999px; border:1px solid var(--line); background:var(--bg);
+  color:var(--muted); cursor:pointer; font-weight:700
 }
-.pill[data-active="true"]{
-  background:linear-gradient(135deg, var(--brand-2), var(--brand));
-  color:#081223; border-color:transparent; box-shadow: var(--shadow);
-}
-.switch{display:flex; align-items:center; gap:10px}
-.switch input{appearance:none; width:44px; height:26px; background:#445; border-radius:999px;
-  position:relative; outline:none; cursor:pointer; transition:background .2s}
-.switch input:checked{background:linear-gradient(135deg,var(--brand-2),var(--brand))}
-.switch input::after{
-  content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%;
-  background:#fff; transition:left .2s ease; box-shadow:0 1px 3px rgba(0,0,0,.35)
-}
-.switch input:checked::after{left:21px}
+.pill[aria-pressed="true"]{background:linear-gradient(135deg,var(--brand-2),var(--brand)); color:#fff; border-color:transparent}
 
-/* Section headings */
-.section{padding:14px 0 34px}
-.section h2{
-  display:flex; align-items:center; gap:10px; margin:6px 0 14px; font-size:clamp(20px,2.3vw,30px)
-}
-.section h2 .title-dot{
-  width:10px;height:10px;border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2));
-  box-shadow:0 0 0 4px rgba(142,240,212,.18), 0 0 30px rgba(142,240,212,.6) inset;
-}
-
-/* Destination grid */
-.grid{
-  display:grid; gap:14px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-.card{
-  position:relative; overflow:hidden; border-radius:var(--radius); padding:16px;
-  background:linear-gradient(180deg, rgba(160,180,255,.08), rgba(160,180,255,.03));
-  border:1px solid rgba(160,180,255,.18);
-  transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease;
-}
-.card:hover{ transform: translateY(-3px); box-shadow: var(--shadow); border-color: transparent; }
-.card .head{display:flex; align-items:center; gap:10px; margin-bottom:4px}
-.card h3{margin:0; font-size:1.15rem}
-.chips{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0}
-.chip{
-  display:inline-flex; align-items:center; gap:8px; font-weight:700; padding:8px 10px;
-  border-radius:999px; font-size:.82rem; border:1px dashed rgba(160,180,255,.3); color:var(--muted)
-}
-.chip.good{border-color:rgba(81,216,138,.45); color:#9df3c1}
-.chip.warn{border-color:rgba(255,209,102,.45); color:#ffe29a}
-.card p{color:var(--muted)}
-.card .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
-.card .list li{margin:6px 0}
-
-/* Tag row */
-.tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px}
-.tag{
-  font-size:.74rem; color:var(--muted); border:1px solid rgba(160,180,255,.25);
-  padding:6px 10px; border-radius:999px; background:var(--bg-card);
-}
-
-/* Modal */
-.modal-back{
-  position:fixed; inset:0; background:rgba(7,10,24,.65);
-  display:none; align-items:flex-end; z-index:50;
-}
-.modal{ width:100%; max-height:88%; overflow:auto; border-radius:20px 20px 0 0;
-  background:var(--bg-card); border:1px solid rgba(160,180,255,.25); box-shadow:var(--shadow);
-}
-.modal .modal-head{display:flex; align-items:center; justify-content:space-between; padding:18px 18px 8px}
-.modal .modal-title{display:flex; align-items:center; gap:12px; font-size:1.15rem; font-weight:800}
-.modal .modal-body{padding:10px 18px 26px}
-.modal .split{display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
-.modal .key{display:grid; gap:10px}
-.key .row{display:flex; gap:10px; align-items:flex-start}
-.key .row b{min-width:120px}
-
-/* Infographic timeline */
-.timeline{
-  position:relative; margin:10px 0 0; padding:14px 0 12px; overflow:auto
-}
-.timeline .rail{
-  display:grid; grid-template-columns: repeat(8, minmax(160px,1fr)); gap:12px; align-items:stretch;
-}
+/* =========================
+   5) TIMELINE (moved above cards)
+   ========================= */
+.section h2{display:flex; align-items:center; gap:10px; font-size:clamp(20px, 2.3vw, 28px); margin:10px 0 14px}
+.dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 0 0 4px rgba(14,165,164,.18)}
+.timeline{overflow:auto; padding:6px 0 12px}
+.rail{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(240px,1fr); gap:12px}
 .week{
-  border-radius:var(--radius); padding:16px; background:var(--bg-card);
-  border:1px solid rgba(160,180,255,.2); min-height:120px; position:relative;
+  background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:14px; min-height:120px;
+  box-shadow:var(--shadow)
 }
-.week .wk{ font-weight:900; color:var(--brand) }
+.week .wk{font-weight:900; color:var(--brand)}
 .week .span{font-weight:700; color:var(--muted)}
-.week .note{color:var(--muted); font-size:.9rem}
-.week.friend{ border-color:rgba(142,240,212,.6); box-shadow: 0 0 0 4px rgba(142,240,212,.18) inset; background:linear-gradient(180deg, rgba(20,184,166,.12), rgba(20,184,166,.04)); }
+.week .note{margin-top:.25rem; color:var(--ink-2)}
+.week.friend{border-color:rgba(14,165,164,.55); box-shadow:0 0 0 3px rgba(14,165,164,.15) inset}
 
-/* Footer */
-footer{
-  margin-top:30px; padding:24px 0 40px; color:var(--muted); border-top:1px dashed rgba(160,180,255,.25)
+/* =========================
+   6) GRID CARDS
+   ========================= */
+.grid{display:grid; gap:14px; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr))}
+.card{
+  display:grid; grid-template-rows:auto auto 1fr auto; gap:6px;
+  position:relative; border-radius:var(--radius); padding:16px;
+  background:var(--bg-card); border:1px solid var(--line); box-shadow:var(--shadow)
 }
-footer .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
-footer .row .btn{--pad:10px 14px}
+.card .head{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.title{display:flex; align-items:center; gap:8px}
+.title h3{font-size:1.15rem}
+.loc{
+  position:relative; width:42px; height:74px; border-radius:20px; border:1px solid var(--line);
+  background:linear-gradient(180deg, var(--bg-soft), var(--bg));
+}
+.loc::before{ /* tick marks for N/C/S */
+  content:"N  C  S"; position:absolute; inset:auto 0 4px 0; text-align:center; font-size:.62rem; color:var(--muted); letter-spacing:.35em;
+}
+.loc .dot{position:absolute; left:50%; transform:translate(-50%,-50%); width:10px; height:10px; border-radius:50%;
+  background:var(--accent); box-shadow:0 0 0 3px rgba(245,158,11,.25)}
+.loc[data-region="North"] .dot{top:18%}
+.loc[data-region="Central"] .dot{top:50%}
+.loc[data-region="South"] .dot{top:82%}
 
-/* Subtle or playful motion */
-@keyframes floaty{ 0%{transform:translateY(0)} 50%{transform:translateY(-4px)} 100%{transform:translateY(0)} }
-.hero .badge{ animation: floaty 4s ease-in-out infinite; }
-.badge:nth-child(2){ animation-delay:.3s }
-.badge:nth-child(3){ animation-delay:.6s }
-.badge:nth-child(4){ animation-delay:1s }
-.badge:nth-child(5){ animation-delay:1.3s }
+.meta{display:flex; flex-wrap:wrap; gap:8px; margin:4px 0}
+.tag{
+  font-size:.78rem; color:var(--muted); border:1px solid var(--line);
+  padding:6px 10px; border-radius:999px; background:var(--bg)
+}
 
-/* Responsive helpers */
-@media (max-width: 960px){
-  .modal .split{ grid-template-columns:1fr }
+.climate{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:4px 0}
+.kal{
+  border:1px solid var(--line); border-radius:12px; background:var(--bg); padding:8px 10px; color:var(--ink-2)
 }
-@media (max-width:760px){
-  .timeline .rail{grid-template-columns: repeat(8, 280px)}
+.kal .m{font-weight:900; color:var(--brand)}
+.kal .row{display:flex; align-items:center; gap:8px}
+.kal .row .glyph{width:16px; height:16px}
+.kal.good{box-shadow:0 0 0 2px rgba(16,185,129,.15) inset}
+.kal.warn{box-shadow:0 0 0 2px rgba(245,158,11,.18) inset}
+
+ul.list{margin:.35rem 0 0}
+ul.list li{margin:.25rem 0; color:var(--ink-2)}
+
+.card .foods,.card .actions{margin-top:10px}
+.foods{display:flex; flex-wrap:wrap; gap:6px}
+.food{font-size:.78rem; border:1px solid var(--line); background:var(--bg); color:var(--muted); padding:6px 10px; border-radius:999px}
+
+.open{
+  margin-top:10px; display:inline-flex; align-items:center; gap:8px; font-weight:800;
+  padding:10px 12px; border-radius:999px; border:1px solid var(--line); background:var(--bg);
+  color:var(--ink); cursor:pointer;
 }
+.card[role="button"]{cursor:pointer}
+.card[role="button"]:hover{outline:2px solid rgba(73,88,241,.2)}
+
+/* =========================
+   7) MODAL
+   ========================= */
+.modal-back{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:flex-end; z-index:50}
+.modal{
+  width:100%; max-height:88%; background:var(--bg-card); border:1px solid var(--line);
+  border-radius:20px 20px 0 0; box-shadow:var(--shadow); overflow:auto;
+}
+.modal-head{display:flex; align-items:center; justify-content:space-between; padding:16px 16px 8px}
+.modal-title{display:flex; align-items:center; gap:10px; font-weight:900}
+.modal-body{padding:8px 16px 20px}
+.modal .split{display:grid; grid-template-columns:1.1fr .9fr; gap:16px}
+.row-kv{display:flex; gap:10px; align-items:flex-start; margin:.25rem 0}
+.row-kv b{min-width:110px}
+
+@media (max-width:960px){ .modal .split{grid-template-columns:1fr} }
+@media (max-width:760px){ .rail{grid-auto-columns:280px} }
+
+/* =========================
+   8) FOOTER
+   ========================= */
+footer{color:var(--muted); border-top:1px dashed var(--line); margin-top:26px; padding:20px 0 40px}
+footer .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 </style>
 </head>
-<body>
-<a href="#destinations" class="sr-only">Skip to content</a>
 
-<!-- ====== SVG ICONS (sprite) ====== -->
-<svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden">
-  <defs>
-    <symbol id="i-compass" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm3.9 7.1l-2.8 6.3a1 1 0 0 1-.5.5l-6.3 2.8a.5.5 0 0 1-.7-.7l2.8-6.3a1 1 0 0 1 .5-.5l6.3-2.8a.5.5 0 0 1 .7.7z"/></symbol>
-    <symbol id="i-suncloud" viewBox="0 0 24 24"><path fill="currentColor" d="M7 17a4 4 0 1 1 1-7.874A5.5 5.5 0 1 1 13 20H7zM16 4l1.2 1.6L19 6l-1.3 1 .5 1.8L16 8l-1.6.8.5-1.8L13.5 6l1.7-.4z"/></symbol>
-    <symbol id="i-umbrella" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9zm1 10v6a3 3 0 0 0 6 0h-2a1 1 0 1 1-2 0v-6h-2z"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></symbol>
-    <symbol id="i-food" viewBox="0 0 24 24"><path fill="currentColor" d="M8 3h2v18H8zm6 0a4 4 0 0 1 4 4c0 1.5-.5 2.5-1.5 3L21 21h-2l-3-10h-2v10h-2V3z"/></symbol>
-    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.3l6.18 3.7-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></symbol>
-    <symbol id="i-route" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6a3 3 0 1 1 4.9 2.3L10 10h4l-.9-.9A3 3 0 1 1 18 6a3 3 0 0 1-5.1 2.3L13 10H9l.1-1.7A3 3 0 0 1 6 6zm0 12a3 3 0 1 1 4.9-2.3L10 14h4l-.9.9A3 3 0 1 1 18 18a3 3 0 0 1-5.1-2.3L13 14H9l.1 1.7A3 3 0 0 1 6 18z"/></symbol>
-    <symbol id="i-calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v3H2V6a2 2 0 0 1 2-2h3V2zM2 11h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9z"/></symbol>
-    <symbol id="i-friend" viewBox="0 0 24 24"><path fill="currentColor" d="M9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM2 20c0-3.3 2.7-6 6-6h2c-3 1.2-4.9 3.8-5 6H2zm10 0c0-2.7 2.2-5 5-5s5 2.3 5 5h-10z"/></symbol>
-    <symbol id="i-laptop" viewBox="0 0 24 24"><path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9H4V5zm-3 11h22l1 2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2l1-2z"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="currentColor" d="M13.2 4L12 5.2 17.8 11H4v2h13.8L12 18.8 13.2 20 22 12z"/></symbol>
-    <symbol id="i-print" viewBox="0 0 24 24"><path fill="currentColor" d="M6 7V2h12v5H6zm12 3H6a4 4 0 0 0-4 4v6h6v-3h8v3h6v-6a4 4 0 0 0-4-4z"/></symbol>
-    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12.6A8 8 0 1 1 11.4 4 6 6 0 1 0 20 12.6z"/></symbol>
-  </defs>
-</svg>
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="header">
-  <div class="container nav">
+  <div class="container nav" role="navigation" aria-label="top">
     <div class="brand">
-      <svg class="glyph"><use href="#i-compass"/></svg>
-      <span>Vietnam · Nov–Dec · Field Guide</span>
+      <svg class="glyph" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm3.9 7.1l-2.8 6.3a1 1 0 0 1-.5.5l-6.3 2.8a.5.5 0 0 1-.7-.7l2.8-6.3a1 1 0 0 1 .5-.5l6.3-2.8a.5.5 0 0 1 .7.7z"/></svg>
+      <strong>Vietnam · Nov–Dec · Field Guide</strong>
     </div>
     <div class="actions">
-      <button class="btn secondary" id="toggleTheme" title="Toggle theme (dark/light)">
-        <svg class="glyph" style="width:18px;height:18px"><use href="#i-moon"/></svg>
-        Theme
-      </button>
-      <button class="btn" id="printBtn" title="Print or Save as PDF">
-        <svg class="glyph" style="width:18px;height:18px"><use href="#i-print"/></svg>
-        Print / PDF
-      </button>
+      <button class="btn" id="themeBtn" aria-pressed="false" title="Toggle theme">🌗 Theme</button>
+      <button class="btn primary" id="printBtn" title="Print or Save as PDF">🖨️ Print / PDF</button>
     </div>
   </div>
 </header>
 
 <section class="hero container">
-  <div class="kicker">Curated • Work-friendly • Play-forward</div>
-  <h1>Vietnam in Late Autumn: Culture, Food, Climate, & an 8-Week Itinerary</h1>
+  <div class="kicker">Curated • Work‑friendly • Play‑forward</div>
+  <h1>Vietnam in Late Autumn — Culture, Food, Climate & An 8‑Week Plan</h1>
   <p class="sub">
-    A one-file, infographic-style guide to Hue · Ha Long Bay · Hanoi · Ha Giang Loop · Hai Van Pass ·
-    Nha Trang · Hoi An · Da Nang · Phu Quoc · Da Lat · Ho Chi Minh City · Mekong Delta · Ba Na Hills · My Khe Beach · Mui Ne/Phan Thiet.
-    Optimized for <b>November & December</b>, with a suggested window for your friend to join.
+    A single‑file guide to Hue · Ha Long Bay · Hanoi · Ha Giang Loop · Hai Van Pass · Nha Trang · Hoi An · Da Nang · Phu Quoc · Da Lat · Ho Chi Minh City · Mekong Delta · Ba Na Hills · My Khe Beach · Mui Ne/Phan Thiet.
+    Optimized for <b>November & December</b>, with a recommended 2‑week window for your friend to join.
   </p>
-  <div class="ribbon" aria-label="Quick facts">
-    <span class="badge"><svg class="glyph"><use href="#i-suncloud"/></svg>Best weather windows up north & south</span>
-    <span class="badge"><svg class="glyph"><use href="#i-umbrella"/></svg>Central coast easing from rains</span>
-    <span class="badge"><svg class="glyph"><use href="#i-laptop"/></svg>Digital-nomad bases: Da Nang · HCMC · Hanoi</span>
-    <span class="badge"><svg class="glyph"><use href="#i-friend"/></svg>Friend window: Weeks 3–4</span>
-    <span class="badge"><svg class="glyph"><use href="#i-route"/></svg>Slow-travel, rail & coastal loops</span>
-  </div>
-
-  <!-- Tool Dock -->
-  <div class="tools" role="region" aria-label="Filters">
-    <div class="row">
-      <div class="search" style="flex:2">
-        <svg class="glyph" style="width:18px;height:18px;opacity:.65"><use href="#i-pin"/></svg>
-        <input id="q" placeholder="Search places, food, or keywords (e.g., 'lanterns', 'noodles', 'hidden')" />
-      </div>
-      <button class="pill" data-filter="region" data-value="All" data-active="true">All regions</button>
-      <button class="pill" data-filter="region" data-value="North">North</button>
-      <button class="pill" data-filter="region" data-value="Central">Central</button>
-      <button class="pill" data-filter="region" data-value="South">South</button>
-      <button class="pill" data-filter="work" data-value="WorkBase">Good work base</button>
-      <button class="pill" data-filter="friend" data-value="BestWithFriend">Great with a friend</button>
-    </div>
-    <div class="row">
-      <label class="switch" title="Show November climate chips">
-        <input type="checkbox" id="toggleMonth" aria-label="Toggle climate month">
-        <span style="color:var(--muted);font-weight:700">Show December climate</span>
-      </label>
-    </div>
+  <div class="ribbon" role="list">
+    <span class="badge" role="listitem">☀️ North & South have prime weather</span>
+    <span class="badge" role="listitem">🌦️ Central coast easing from rains</span>
+    <span class="badge" role="listitem">💻 Nomad bases: Da Nang · HCMC · Hanoi</span>
+    <span class="badge" role="listitem">👥 Friend window: Weeks 3–4</span>
+    <span class="badge" role="listitem">🚆 Slow‑travel: rail & coastal drives</span>
   </div>
 </section>
 
-<main id="destinations" class="container section">
-  <h2><span class="title-dot"></span> Destinations & Deep-Cuts</h2>
-  <div id="grid" class="grid" role="list"></div>
-</main>
+<!-- ======= FILTER BAR ======= -->
+<section class="container tools" aria-label="Filters">
+  <div class="row">
+    <div class="search" style="flex:2">
+      🔎 <input id="q" placeholder="Search places, food, or keywords (e.g., 'lanterns', 'noodles', 'hidden')" autocomplete="off" />
+    </div>
+    <button class="pill" data-filter="region" data-value="All" aria-pressed="true">All regions</button>
+    <button class="pill" data-filter="region" data-value="North" aria-pressed="false">North</button>
+    <button class="pill" data-filter="region" data-value="Central" aria-pressed="false">Central</button>
+    <button class="pill" data-filter="region" data-value="South" aria-pressed="false">South</button>
+    <button class="pill" data-filter="work" data-value="WorkBase" aria-pressed="false">Good work base</button>
+    <button class="pill" data-filter="friend" data-value="BestWithFriend" aria-pressed="false">Great with a friend</button>
+  </div>
+</section>
 
-<section class="container section" id="itinerary">
-  <h2><span class="title-dot"></span> Suggested 8-Week Flow (friend: weeks 3–4)</h2>
+<!-- ======= TIMELINE (moved up) ======= -->
+<section class="container section" id="flow">
+  <h2><span class="dot"></span> Suggested 8‑Week Flow (friend: weeks 3–4)</h2>
   <div class="timeline" aria-label="Itinerary timeline">
     <div class="rail" id="rail"></div>
   </div>
 </section>
 
+<main id="main" class="container section">
+  <h2><span class="dot"></span> Destinations & Deep‑Cuts</h2>
+  <div id="grid" class="grid" role="list"></div>
+</main>
+
 <section class="container section" id="practical">
-  <h2><span class="title-dot"></span> Practical Power-Ups</h2>
+  <h2><span class="dot"></span> Practical Power‑Ups</h2>
   <div class="grid">
     <div class="card">
-      <div class="head"><svg class="glyph" style="width:20px;height:20px;color:var(--accent)"><use href="#i-calendar"/></svg><h3>Weather heuristics (Nov–Dec)</h3></div>
+      <div class="head"><div class="title"><strong>Weather heuristics (Nov–Dec)</strong></div></div>
       <ul class="list">
-        <li><b>North (Hanoi, Ha Long)</b>: cool-pleasant; great sky days; light layers.</li>
-        <li><b>Central (Hue → Da Nang → Hoi An → Nha Trang)</b>: rains taper, quick sun breaks. Carry a compact poncho.</li>
-        <li><b>South (HCMC, Mekong, Phu Quoc)</b>: dry season starts; warm days, low rain. SPF 50.</li>
+        <li><b>North (Hanoi, Ha Long)</b> — cool & pleasant; crisp light. Light layers.</li>
+        <li><b>Central (Hue → Da Nang → Hoi An → Nha Trang)</b> — showers taper; keep a compact poncho.</li>
+        <li><b>South (HCMC, Mekong, Phu Quoc)</b> — dry season; warm, low rain. SPF 50.</li>
       </ul>
     </div>
     <div class="card">
-      <div class="head"><svg class="glyph" style="width:20px;height:20px;color:var(--brand)"><use href="#i-laptop"/></svg><h3>Work-friendly bases</h3></div>
-      <p>Pick apartments near reliable cafés/co-working: <b>Da Nang (An Thuong)</b>, <b>HCMC (District 1/3 & Thao Dien)</b>, <b>Hanoi (Tay Ho)</b>. Backup with a phone eSIM and hotspot.</p>
+      <div class="head"><div class="title"><strong>Work‑friendly bases</strong></div></div>
+      <ul class="list">
+        <li><b>Da Nang (An Thuong)</b> — beach + cafés + fiber.</li>
+        <li><b>HCMC (District 1/3 & Thao Dien)</b> — co‑works & food miles.</li>
+        <li><b>Hanoi (Tay Ho)</b> — lakeside, quieter, good coffee.</li>
+      </ul>
     </div>
     <div class="card">
-      <div class="head"><svg class="glyph" style="width:20px;height:20px;color:var(--brand-2)"><use href="#i-route"/></svg><h3>Transit rhythm</h3></div>
-      <p>Favor rail & scenic roads (Hai Van Pass moto/jeep, coastal trains), then short flights for the north↔south hop. Night trains double as lodging.</p>
+      <div class="head"><div class="title"><strong>Transit rhythm</strong></div></div>
+      <ul class="list">
+        <li>Prefer rail & scenic roads (Hai Van Pass). </li>
+        <li>Use short flights for North↔South hops.</li>
+        <li>Night trains double as lodging.</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <footer class="container">
   <div class="row">
-    <span>Made with ♥ for a focused, fun, and flexible Vietnam loop.</span>
-    <button class="btn secondary" id="backTop"><svg class="glyph" style="width:18px;height:18px"><use href="#i-arrow"/></svg> Back to top</button>
+    <span>Built for clarity, comfort, and a bit of play. </span>
+    <button class="btn" id="backTop">⬆️ Back to top</button>
   </div>
 </footer>
 
+<!-- =========================
+     JS: Data + Rendering
+     ========================= -->
 <script>
-/* ======================= DATA ======================= */
+/* ---------- Data (tuned text: less em-dashes/semicolons) ---------- */
 const PLACES = [
-  {
-    id:'hue', name:'Hue', region:'Central',
-    climate:{Nov:'19–24°C · rainy windows; cool', Dec:'18–22°C · easing rains'},
-    culture:'Former imperial capital on the Perfume River; Nguyen dynasty citadels & royal cuisine.',
-    food:['Bun bo Hue (spicy beef noodle)','Com hen (clam rice)','Banh beo—steamed rice discs'],
+  { id:'hue', name:'Hue', region:'Central',
+    climate:{Nov:'19–24°C · frequent rain', Dec:'18–22°C · easing rain'},
+    culture:'Former imperial capital on the Perfume River. Nguyen dynasty citadels and refined royal cuisine.',
+    food:['Bun bo Hue (spicy beef noodle)','Com hen (clam rice)','Banh beo (steamed rice discs)'],
     attractions:['Imperial City & Citadel','Thien Mu Pagoda','Royal Tombs (Khai Dinh, Minh Mang)'],
     hidden:['Vong Canh Hill sunset ridge','Tam Giang lagoon sampan trip'],
-    tips:['Buy combined tomb tickets','Bring compact poncho—showers pass quickly'],
+    tips:['Buy combined tomb tickets','Carry a compact poncho'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'halong', name:'Ha Long Bay', region:'North',
+  { id:'halong', name:'Ha Long Bay', region:'North',
     climate:{Nov:'~22°C · dry & clear', Dec:'15–21°C · dry · misty mornings'},
-    culture:'UNESCO marine karst of tower-islands, caves, and floating villages.',
-    food:['Grilled squid “cha muc”','Sea snail hotpot'],
-    attractions:['Overnight bay cruise','Sung Sot (Surprise) Cave','Kayak Luon Cave'],
+    culture:'UNESCO marine karst of limestone towers and caves. Some floating villages remain.',
+    food:['Cha muc (grilled squid cake)','Sea snail hotpot'],
+    attractions:['Overnight bay cruise','Sung Sot Cave','Kayak Luon Cave'],
     hidden:['Lan Ha or Bai Tu Long (quieter bays)','Cat Ba island cycle loops'],
-    tips:['Pick small-boat routes for quieter coves','Fog adds mood—pack a light layer'],
+    tips:['Choose smaller boats for calmer coves','Pack a light layer for fog'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'hanoi', name:'Hanoi', region:'North',
+  { id:'hanoi', name:'Hanoi', region:'North',
     climate:{Nov:'20–26°C · crisp', Dec:'15–22°C · cool'},
-    culture:'Old Quarter alleys, lakes, French villas; café culture and street food.',
+    culture:'Old Quarter alleys, lakes, French villas, slow coffee culture.',
     food:['Pho bo','Bun cha','Egg coffee'],
     attractions:['Hoan Kiem Lake & Old Quarter','Temple of Literature','Train Street (timed)'],
-    hidden:['Long Bien sunrise walk','Small bia hoi corners at dusk'],
-    tips:['Stay near Hoan Kiem for walkability','Use cash for street eats'],
+    hidden:['Long Bien sunrise walk','Corner bia hoi at dusk'],
+    tips:['Stay near Hoan Kiem for walkability','Cash helps at street stalls'],
     flags:{WorkBase:true, BestWithFriend:true}
   },
-  {
-    id:'hagiang', name:'Ha Giang Loop', region:'North',
-    climate:{Nov:'10–20°C · clear · cool', Dec:'6–16°C · cold · mist pockets'},
-    culture:'Jaw-dropping limestone canyons; ethnic markets; UNESCO Dong Van Karst Geopark.',
-    food:['Thang co (mountain stew)','Corn wine (happy-water)'],
+  { id:'hagiang', name:'Ha Giang Loop', region:'North',
+    climate:{Nov:'10–20°C · clear & cool', Dec:'6–16°C · cold · mist pockets'},
+    culture:'Canyon roads and ethnic markets within the Dong Van Karst Geopark.',
+    food:['Thang co (mountain stew)','Corn wine'],
     attractions:['Ma Pi Leng Pass ridge ride','Lung Cu Flag Tower','Dong Van Sunday Market'],
-    hidden:['Nho Que River boat into Tu San canyon','Local homestay weaving demos'],
-    tips:['Use an Easy-Rider if not confident on motos','Warm gear + gloves for passes'],
+    hidden:['Nho Que River boat into Tu San canyon','Homestay weaving demos'],
+    tips:['Use an “Easy‑Rider” if you don’t ride','Bring warm layers and gloves'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'haivan', name:'Hai Van Pass', region:'Central',
-    climate:{Nov:'22–27°C · can be misty', Dec:'20–24°C · clearer days'},
-    culture:'“Ocean Cloud Pass” — coastal ridge between Hue & Da Nang; Top Gear famous.',
-    food:['Lang Co seafood shacks','Bun cha ca (fish-cake noodles)'],
-    attractions:['Motorcycle/jeep traverse','Hai Van Gate fort','Lang Co lagoon view'],
-    hidden:['Don Ca stone arch bridge & rail lookouts','Lonely Pine viewpoint'],
-    tips:['Go late morning for clearer summit','Hire a jeep if packs are heavy'],
+  { id:'haivan', name:'Hai Van Pass', region:'Central',
+    climate:{Nov:'22–27°C · possible mist', Dec:'20–24°C · clearer windows'},
+    culture:'Ocean Cloud Pass. Coastal ridge between Hue and Da Nang; famous scenic road.',
+    food:['Lang Co seafood shacks','Bun cha ca (fish‑cake noodles)'],
+    attractions:['Motorcycle or jeep traverse','Hai Van Gate fort','Lang Co lagoon view'],
+    hidden:['Rail lookouts at Don Ca bridge','Lonely Pine viewpoint'],
+    tips:['Late morning often clearer at the summit','Hire a jeep if carrying big packs'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'nhatrang', name:'Nha Trang', region:'Central',
+  { id:'nhatrang', name:'Nha Trang', region:'Central',
     climate:{Nov:'23–28°C · rainy breaks', Dec:'22–27°C · improving'},
-    culture:'Beach city with Cham towers and reefs; spa & boat days.',
-    food:['Fresh jellyfish bun cha ca','Grilled lobster (market)'],
+    culture:'Beach city with Cham heritage and reefs. Easy island‑hop days.',
+    food:['Bun cha ca (jellyfish optional)','Grilled lobster (market)'],
     attractions:['Po Nagar Cham Towers','Snorkel Hon Mun','Thap Ba hot springs'],
-    hidden:['Vinh Luong fishing port sunrise','Doc Let beach day'],
-    tips:['Pick boats on calmer east days','Rains pass; keep a poncho'],
+    hidden:['Vinh Luong fishing port at dawn','Doc Let beach day'],
+    tips:['Choose boats on calmer east‑wind days','Keep a poncho handy'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'hoian', name:'Hoi An', region:'Central',
-    climate:{Nov:'22–27°C · some showers', Dec:'19–24°C · cooler · festive'},
-    culture:'UNESCO trading port—lantern nights, assembly halls, tailors.',
+  { id:'hoian', name:'Hoi An', region:'Central',
+    climate:{Nov:'22–27°C · showers', Dec:'19–24°C · cooler · festive'},
+    culture:'UNESCO trading town. Lantern nights, historic halls, and tailoring.',
     food:['Cao lau','White rose dumplings','Mi Quang'],
-    attractions:['Ancient Town & lantern fest','Japanese Bridge','An Bang beach (clear days)'],
-    hidden:['Cam Kim cycle—woodcarvers','Tra Que herb village cooking'],
-    tips:['Lantern night = pedestrianized','Avoid high tide streets in heavy rain'],
+    attractions:['Ancient Town (lantern nights)','Japanese Bridge','An Bang beach (clear days)'],
+    hidden:['Cam Kim cycle to woodcarvers','Tra Que herb village cooking'],
+    tips:['Lantern nights are pedestrian‑only','Avoid high‑tide blocks during heavy rain'],
     flags:{WorkBase:true, BestWithFriend:true}
   },
-  {
-    id:'danang', name:'Da Nang', region:'Central',
+  { id:'danang', name:'Da Nang', region:'Central',
     climate:{Nov:'22–27°C · showers easing', Dec:'20–25°C · mild'},
-    culture:'Modern beach city with bridges, cafés, and a strong nomad scene.',
-    food:['Mi Quang','Banh xeo with greens'],
-    attractions:['Marble Mountains','Dragon Bridge weekend show','Son Tra peninsula'],
-    hidden:['Nam O rock-reef sunrise','Chill work-cafés in An Thuong'],
-    tips:['Base for Hoi An & Ba Na day trips','Reliable fiber & eSIM = easy work'],
+    culture:'Modern beach city with bridges and cafés. Great base for work.',
+    food:['Mi Quang','Banh xeo with herbs'],
+    attractions:['Marble Mountains','Dragon Bridge show (weekends)','Son Tra peninsula'],
+    hidden:['Nam O rock‑reef sunrise','An Thuong work‑café cluster'],
+    tips:['Base here for Hoi An & Ba Na trips','eSIM + fiber makes work easy'],
     flags:{WorkBase:true, BestWithFriend:true}
   },
-  {
-    id:'phuquoc', name:'Phu Quoc', region:'South',
+  { id:'phuquoc', name:'Phu Quoc', region:'South',
     climate:{Nov:'27–31°C · dry starts', Dec:'23–31°C · dry & sunny'},
-    culture:'“Pearl Island”—white-sand beaches, night markets, snorkel isles.',
-    food:['Herring salad (goi ca trich)','Fish sauce tastings','Sea urchin porridge'],
-    attractions:['Sao & Khem beaches','Hon Thom cable car & isles','Duong Dong Night Market'],
+    culture:'Pearl Island with white‑sand beaches, night markets, and island snorkel runs.',
+    food:['Herring salad','Fish sauce tastings','Sea urchin porridge'],
+    attractions:['Sao & Khem beaches','Hon Thom cable car isles','Duong Dong Night Market'],
     hidden:['Rach Vem starfish flats (calm days)','Ham Ninh fishing village dawn'],
-    tips:['Calm seas Dec–Mar; great snorkeling','Scooter safely; roads new but slick'],
+    tips:['Calm seas Dec–Mar for snorkeling','Ride scooters cautiously on slick new roads'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'dalat', name:'Da Lat', region:'Central',
+  { id:'dalat', name:'Da Lat', region:'Central',
     climate:{Nov:'14–24°C · dry & crisp', Dec:'13–21°C · chilliest month'},
-    culture:'Highland “City of Eternal Spring”—pines, lakes, French villas, coffee.',
-    food:['Artichoke tea','Banh canh xiu mai','Avocado ice-cream'],
+    culture:'Highland city of pines, lakes, villas, and specialty coffee.',
+    food:['Artichoke tea','Banh canh xiu mai','Avocado ice cream'],
     attractions:['Xuan Huong Lake loop','Crazy House (Hang Nga)','Langbiang peak trek'],
-    hidden:['Secret hydrangea farms photo spots','Tuyen Lam lake SUP at dawn'],
-    tips:['Cool nights—pack fleece','Great roastery hopping + writing days'],
+    hidden:['Hydrangea farm photo spots','Tuyen Lam SUP at dawn'],
+    tips:['Pack a fleece for nights','Great place to write and café‑hop'],
     flags:{WorkBase:true, BestWithFriend:true}
   },
-  {
-    id:'hcmc', name:'Ho Chi Minh City (Saigon)', region:'South',
+  { id:'hcmc', name:'Ho Chi Minh City (Saigon)', region:'South',
     climate:{Nov:'24–31°C · dry begins', Dec:'22–31°C · dry & sunny'},
-    culture:'Electric megacity for history, food crawls, rooftops, and co-working.',
-    food:['Banh mi','Com tam broken rice','Hu tieu Nam Vang'],
+    culture:'High‑energy city for history, food crawls, rooftops, and co‑working.',
+    food:['Banh mi','Com tam','Hu tieu Nam Vang'],
     attractions:['War Remnants Museum','Reunification Palace','Ben Thanh Market'],
-    hidden:['Thao Dien craft cafés (D2)','Chinatown pagodas & food alleys'],
-    tips:['Rooftop sunset then street-food crawl','Grab is cheap; helmets mandatory'],
+    hidden:['Thao Dien craft cafés (D2)','Chinatown pagodas and eats'],
+    tips:['Rooftop sunset then a street‑food crawl','Grab is cheap; helmets are a must'],
     flags:{WorkBase:true, BestWithFriend:true}
   },
-  {
-    id:'mekong', name:'Mekong Delta', region:'South',
-    climate:{Nov:'26–31°C · drier', Dec:'24–31°C · dry & bright'},
-    culture:'River life—floating markets, coconut & fruit isles, homestays.',
-    food:['Hu tieu boat noodles','Coconut candy & cacao'],
-    attractions:['Cai Rang floating market (Can Tho)','Ben Tre canals','Vinh Long homestay'],
-    hidden:['Tra Su cajuput forest (An Giang)','Mo Cay coconut “factory alleys”'],
-    tips:['Start markets 5–6am','DIY loop: My Tho→Ben Tre→Can Tho→HCMC'],
+  { id:'mekong', name:'Mekong Delta', region:'South',
+    climate:{Nov:'26–31°C · drier', Dec:'24–31°C · bright'},
+    culture:'River life with floating markets, coconut and fruit isles, and homestays.',
+    food:['Hu tieu boat noodles','Coconut candy'],
+    attractions:['Cai Rang floating market','Ben Tre canals','Vinh Long homestay'],
+    hidden:['Tra Su cajuput forest','Mo Cay coconut “factory alleys”'],
+    tips:['Start markets 5–6am','DIY loop: My Tho → Ben Tre → Can Tho'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'bana', name:'Ba Na Hills & Golden Bridge', region:'Central',
-    climate:{Nov:'20–24°C · mixed sun/mist', Dec:'18–22°C · cooler—clear vistas'},
-    culture:'Hill resort via record cable car; surreal “Hands Bridge”, French Village.',
-    food:['Hill cafés','Danang specialties in base town'],
-    attractions:['Golden Bridge stroll','Cable car ride (5.8 km line)','Le Jardin gardens'],
+  { id:'bana', name:'Ba Na Hills & Golden Bridge', region:'Central',
+    climate:{Nov:'20–24°C · sun/mist mix', Dec:'18–22°C · cooler'},
+    culture:'Hill resort via record cable car. Hands Bridge and gardens at altitude.',
+    food:['Hill cafés','Danang specialties in town below'],
+    attractions:['Golden Bridge stroll','Long cable car ride','Le Jardin gardens'],
     hidden:['Quiet arboretum paths','Mountain tea corners in fog'],
-    tips:['Go early; clouds lift fast','Layer up—temps drop at 1,400m+'],
+    tips:['Go early; clouds lift quickly','Layer up—temps drop at 1,400 m+'],
     flags:{WorkBase:false, BestWithFriend:true}
   },
-  {
-    id:'mykhe', name:'My Khe Beach (Da Nang)', region:'Central',
+  { id:'mykhe', name:'My Khe Beach (Da Nang)', region:'Central',
     climate:{Nov:'23–27°C · surfable', Dec:'22–25°C · calmer days'},
-    culture:'Long city beach ideal for sunrise runs, coffee dips, and surf lessons.',
-    food:['Seafood bbq roadside','Banh mi ốp la breakfast'],
-    attractions:['Sunrise swim & coffee','Beach path cycle','SUP on flat mornings'],
-    hidden:['Lady Buddha view pull-offs','Marble cave quiet chambers'],
-    tips:['Check rip/tide boards','Best light pre-8am'],
+    culture:'Long city beach for sunrise runs, coffee dips, and surf lessons.',
+    food:['Seafood BBQ roadside','Banh mi ốp la breakfast'],
+    attractions:['Sunrise swim + coffee','Beach path cycle','SUP on flat mornings'],
+    hidden:['Lady Buddha viewpoints','Quiet Marble caves'],
+    tips:['Check rip/tide boards','Best light before 8am'],
     flags:{WorkBase:true, BestWithFriend:true}
   },
-  {
-    id:'muine', name:'Mui Ne / Phan Thiet', region:'South',
+  { id:'muine', name:'Mui Ne / Phan Thiet', region:'South',
     climate:{Nov:'24–30°C · dry winds', Dec:'23–30°C · dry & sunny'},
-    culture:'Vietnam’s sand-dune & kitesurf capital with a laid-back strip.',
+    culture:'Sand‑dune and kitesurf zone with a laid‑back strip.',
     food:['Seafood hotpot','Banh quai vac'],
     attractions:['Red & White dunes','Fairy Stream','Fishing harbor sunset'],
-    hidden:['Ke Ga lighthouse day trip','Cham culture sites near Phan Thiet'],
-    tips:['Sun & wind—lip balm + SPF','Kite season booms Nov–Mar'],
+    hidden:['Ke Ga lighthouse day trip','Cham sites near Phan Thiet'],
+    tips:['Sun + wind: SPF, hat, lip balm','Prime kite season Nov–Mar'],
     flags:{WorkBase:false, BestWithFriend:true}
   }
 ];
 
-/* =================== RENDER =================== */
+/* ---------- Itinerary data ---------- */
+const WEEKS = [
+  {wk:1, span:'Days 1–7',  focus:'Hanoi → Ha Long Bay', note:'Old Quarter base; overnight bay cruise; preview southbound rail.'},
+  {wk:2, span:'Days 8–14', focus:'Hue → Hai Van Pass → Da Nang', note:'Citadel + tombs; jeep/moto pass; settle in An Thuong for work.'},
+  {wk:3, span:'Days 15–21', focus:'Hoi An (Friend joins)', note:'Lantern night, tailoring, herb‑village ride; An Bang beach windows.'},
+  {wk:4, span:'Days 22–28', focus:'Ba Na Hills → My Khe → Nha Trang', note:'Hands Bridge early; sunrise swims; spa day; sleeper south.'},
+  {wk:5, span:'Days 29–35', focus:'Da Lat highlands', note:'Coffee roastery hop, lake loop, Langbiang trek; cool nights.'},
+  {wk:6, span:'Days 36–42', focus:'Ho Chi Minh City', note:'History loop + food crawl; rooftops; co‑work; Cu Chi day trip.'},
+  {wk:7, span:'Days 43–49', focus:'Mekong Delta', note:'Ben Tre canals → Can Tho markets; homestay; DIY loop.'},
+  {wk:8, span:'Days 50–56', focus:'Phu Quoc cooldown', note:'Sao/Khem beaches; snorkel isles; night market finale; fly out.'}
+];
+
+/* ---------- Render functions ---------- */
 const grid = document.getElementById('grid');
 const q = document.getElementById('q');
 const pillBtns = document.querySelectorAll('.pill');
 const rail = document.getElementById('rail');
-const toggleMonth = document.getElementById('toggleMonth');
+const themeBtn = document.getElementById('themeBtn');
 
-let state = {
-  query:'', region:'All', filterWork:false, filterFriend:false, month:'Nov'
-};
+let state = { query:'', region:'All', filterWork:false, filterFriend:false };
 
-function climateChip(place){
-  const txt = place.climate[state.month] || '';
-  return `<span class="chip ${/dry|clear|sun/i.test(txt)?'good':/rain|mist|cold/i.test(txt)?'warn':''}">
-    <svg class="glyph" style="width:14px;height:14px"><use href="#i-suncloud"/></svg>
-    ${state.month}: ${txt}
-  </span>`;
+function kal(p, month){
+  const txt = p.climate[month] || '';
+  const cls = /dry|clear|sun|mild/i.test(txt) ? 'good' : /rain|mist|cold/i.test(txt) ? 'warn' : '';
+  return `
+    <div class="kal ${cls}" aria-label="${p.name} ${month} climate">
+      <div class="m">${month}</div>
+      <div class="row"><svg class="glyph" viewBox="0 0 24 24"><path fill="currentColor" d="M7 17a4 4 0 1 1 1-7.874A5.5 5.5 0 1 1 13 20H7zM16 4l1.2 1.6L19 6l-1.3 1 .5 1.8L16 8l-1.6.8.5-1.8L13.5 6l1.7-.4z"/></svg> <span>${txt}</span></div>
+    </div>`;
 }
 
-function card(place){
+function card(p){
   return `
-  <article class="card" role="listitem" tabindex="0" data-id="${place.id}">
+  <article class="card" role="button" tabindex="0" data-id="${p.id}" aria-label="Open ${p.name} details">
     <div class="head">
-      <svg class="glyph" style="width:18px;height:18px;color:var(--accent)"><use href="#i-pin"/></svg>
-      <h3>${place.name}</h3>
+      <div class="title">
+        <svg width="18" height="18" viewBox="0 0 24 24" style="color:var(--accent)"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <h3>${p.name}</h3>
+      </div>
+      <div class="loc" data-region="${p.region}"><span class="dot"></span></div>
     </div>
-    <div class="chips">
-      ${climateChip(place)}
-      <span class="chip"><svg class="glyph" style="width:14px;height:14px"><use href="#i-compass"/></svg>${place.region}</span>
-      ${place.flags.WorkBase ? '<span class="chip good"><svg class="glyph" style="width:14px;height:14px"><use href="#i-laptop"/></svg>Work-base</span>':''}
-      ${place.flags.BestWithFriend ? '<span class="chip"><svg class="glyph" style="width:14px;height:14px"><use href="#i-friend"/></svg>Friend-fun</span>':''}
+
+    <div class="meta">
+      <span class="tag">${p.region}</span>
+      ${p.flags.WorkBase ? '<span class="tag">💻 Work‑base</span>' : ''}
+      ${p.flags.BestWithFriend ? '<span class="tag">👥 Friend‑fun</span>' : ''}
     </div>
-    <p>${place.culture}</p>
+
+    <div class="climate">${kal(p,'Nov')}${kal(p,'Dec')}</div>
+
+    <p>${p.culture}</p>
     <ul class="list">
-      ${place.attractions.slice(0,3).map(x=>`<li>• ${x}</li>`).join('')}
+      ${p.attractions.slice(0,3).map(x=>`<li>${x}</li>`).join('')}
     </ul>
-    <div class="tags">${place.food.slice(0,3).map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+
+    <div class="foods">${p.food.slice(0,3).map(x=>`<span class="food">${x}</span>`).join('')}</div>
+    <button class="open" aria-hidden="true">View details ▸</button>
   </article>`;
 }
 
 function render(){
-  let rows = PLACES.filter(p=>{
+  const rows = PLACES.filter(p=>{
     if(state.region!=='All' && p.region!==state.region) return false;
     if(state.filterWork && !p.flags.WorkBase) return false;
     if(state.filterFriend && !p.flags.BestWithFriend) return false;
@@ -557,129 +539,119 @@ function render(){
     }
     return true;
   }).map(card).join('');
-  grid.innerHTML = rows || `<div class="card"><h3>No matches</h3><p>Try a different filter or keyword.</p></div>`;
+  grid.innerHTML = rows || `<div class="card"><h3>No matches</h3><p>Try different filters or keywords.</p></div>`;
 
-  // Bind modals for details
   document.querySelectorAll('.card').forEach(el=>{
-    el.addEventListener('click', ()=>openModal(el.getAttribute('data-id')));
-    el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') openModal(el.getAttribute('data-id')); });
+    el.addEventListener('click', ()=>openModal(el.dataset.id));
+    el.addEventListener('keypress', e=>{ if(e.key==='Enter') openModal(el.dataset.id); });
   });
 }
 
-q.addEventListener('input', e => { state.query = e.target.value; render(); });
+function renderRail(){
+  rail.innerHTML = WEEKS.map(w=>{
+    const cls = (w.wk===3 || w.wk===4) ? 'week friend' : 'week';
+    return `<div class="${cls}">
+      <div class="wk">Week ${w.wk}</div>
+      <div class="span">${w.span}</div>
+      <div class="note"><b>${w.focus}</b><br/>${w.note}</div>
+    </div>`;
+  }).join('');
+}
 
+/* ---------- Filters ---------- */
+q.addEventListener('input', e => { state.query = e.target.value; render(); });
 pillBtns.forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const type = btn.dataset.filter, val = btn.dataset.value;
     if(type==='region'){
-      pillBtns.forEach(b=>{ if(b.dataset.filter==='region') b.dataset.active = 'false'; });
-      state.region = val; btn.dataset.active = 'true';
-    }else if(type==='work'){ state.filterWork = !state.filterWork; btn.dataset.active = String(state.filterWork);}
-    else if(type==='friend'){ state.filterFriend = !state.filterFriend; btn.dataset.active = String(state.filterFriend);}
+      pillBtns.forEach(b=>{ if(b.dataset.filter==='region') b.setAttribute('aria-pressed','false'); });
+      state.region = val; btn.setAttribute('aria-pressed','true');
+    } else if(type==='work'){
+      state.filterWork = btn.getAttribute('aria-pressed')!=='true';
+      btn.setAttribute('aria-pressed', String(state.filterWork));
+    } else if(type==='friend'){
+      state.filterFriend = btn.getAttribute('aria-pressed')!=='true';
+      btn.setAttribute('aria-pressed', String(state.filterFriend));
+    }
     render();
   });
 });
 
-toggleMonth.addEventListener('change', e => { state.month = e.target.checked ? 'Dec' : 'Nov'; render(); });
-
-/* =============== MODAL =============== */
+/* ---------- Modal ---------- */
 const modalBack = document.createElement('div');
-modalBack.className = 'modal-back'; modalBack.innerHTML = `
+modalBack.className = 'modal-back';
+modalBack.innerHTML = `
   <div class="modal" role="dialog" aria-modal="true" aria-label="Destination details">
     <div class="modal-head">
       <div class="modal-title" id="modalTitle"></div>
-      <button class="btn secondary" id="closeModal">Close</button>
+      <button class="btn" id="closeModal">Close</button>
     </div>
     <div class="modal-body">
       <div class="split">
-        <div class="key" id="leftCol"></div>
-        <div class="key" id="rightCol"></div>
+        <div id="leftCol"></div>
+        <div id="rightCol"></div>
       </div>
     </div>
   </div>`;
 document.body.appendChild(modalBack);
+
 function openModal(id){
-  const p = PLACES.find(x=>x.id===id);
-  if(!p) return;
+  const p = PLACES.find(x=>x.id===id); if(!p) return;
+
   document.getElementById('modalTitle').innerHTML = `
-      <svg class="glyph" style="width:18px;height:18px;color:var(--accent)"><use href="#i-pin"/></svg>
-      ${p.name}
-      <span class="tag" style="margin-left:8px">${p.region}</span>`;
+    <svg width="18" height="18" viewBox="0 0 24 24" style="color:var(--accent)"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+    <strong>${p.name}</strong> <span class="tag" style="margin-left:8px">${p.region}</span>`;
 
   const left = `
-    <div class="row"><b>Culture</b><div>${p.culture}</div></div>
-    <div class="row"><b>Climate</b>
-      <div>
-        <div class="chips">${climateChip(p).replace(state.month+':', 'Nov:')}</div>
-        <div class="chips">${state.month==='Nov'?climateChip({...p, climate:{Nov:p.climate.Dec}}).replace('Nov:','Dec:'):climateChip({...p, climate:{Nov:p.climate.Nov}}).replace('Nov:','Dec:')}</div>
-      </div>
+    <div class="row-kv"><b>Culture</b><div>${p.culture}</div></div>
+    <div class="row-kv"><b>Climate</b>
+      <div class="climate">${kal(p,'Nov')}${kal(p,'Dec')}</div>
     </div>
-    <div class="row"><b>Top Sights</b><div><ul class="list">${p.attractions.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+    <div class="row-kv"><b>Top Sights</b>
+      <div><ul class="list">${p.attractions.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
   `;
-
   const right = `
-    <div class="row"><b>Hidden Gems</b><div><ul class="list">${(p.hidden||[]).map(x=>`<li>${x}</li>`).join('') || '<li>—</li>'}</ul></div></div>
-    <div class="row"><b>Eat This</b><div class="tags">${p.food.map(x=>`<span class="tag">${x}</span>`).join('')}</div></div>
-    <div class="row"><b>Tips</b><div><ul class="list">${p.tips.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+    <div class="row-kv"><b>Locator</b>
+      <div class="loc" data-region="${p.region}" style="margin-top:4px"><span class="dot"></span></div>
+    </div>
+    <div class="row-kv"><b>Hidden Gems</b>
+      <div><ul class="list">${(p.hidden||[]).map(x=>`<li>${x}</li>`).join('') || '<li>—</li>'}</ul></div>
+    </div>
+    <div class="row-kv"><b>Eat This</b><div class="foods">${p.food.map(x=>`<span class="food">${x}</span>`).join('')}</div></div>
+    <div class="row-kv"><b>Tips</b><div><ul class="list">${p.tips.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
   `;
 
   document.getElementById('leftCol').innerHTML = left;
   document.getElementById('rightCol').innerHTML = right;
+
   modalBack.style.display='flex';
   document.getElementById('closeModal').focus();
 }
 modalBack.addEventListener('click', e=>{ if(e.target===modalBack || e.target.id==='closeModal') modalBack.style.display='none'; });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') modalBack.style.display='none'; });
 
-/* ============== ITINERARY ============== */
-const WEEKS = [
-  {wk:1, span:'Days 1–7', focus:'Hanoi → Ha Long Bay', note:'Base in Old Quarter; overnight bay cruise; rail southbound preview.'},
-  {wk:2, span:'Days 8–14', focus:'Hue → Hai Van Pass → Da Nang', note:'Citadel day + tombs; jeep/moto pass; settle in An Thuong work-friendly cafés.'},
-  {wk:3, span:'Days 15–21', focus:'Hoi An (Friend joins)', note:'Lantern night, tailoring, cooking ride to Tra Que; beach windows at An Bang.'},
-  {wk:4, span:'Days 22–28', focus:'Ba Na Hills → My Khe → Nha Trang', note:'Hands Bridge early; sunrise swims; bay spa day; sleeper south.'},
-  {wk:5, span:'Days 29–35', focus:'Da Lat highlands', note:'Coffee roastery hop, lake loop, Langbiang trek; cool nights.'},
-  {wk:6, span:'Days 36–42', focus:'Ho Chi Minh City', note:'History loop + food crawl; rooftops; co-work; day-trip Cu Chi.'},
-  {wk:7, span:'Days 43–49', focus:'Mekong Delta', note:'Ben Tre canals → Can Tho floating markets; homestay; DIY loop back.'},
-  {wk:8, span:'Days 50–56', focus:'Phu Quoc cooldown', note:'Sao/Khem beaches, snorkel isles, night market finale; fly out.'}
-];
-function renderRail(){
-  rail.innerHTML = WEEKS.map(w=>{
-    const cls = (w.wk===3 || w.wk===4) ? 'week friend':'week';
-    return `<div class="${cls}">
-      <div class="wk">Week ${w.wk}</div>
-      <div class="span">${w.span}</div>
-      <div class="note">${w.focus} — ${w.note}</div>
-    </div>`;
-  }).join('');
-}
-
-/* ============== UTILITIES ============== */
-document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+/* ---------- Utilities ---------- */
+document.getElementById('printBtn').addEventListener('click', ()=>window.print());
 document.getElementById('backTop').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-document.getElementById('toggleTheme').addEventListener('click', ()=>{
-  // Light/dark toggle by flipping root gradient baseline
-  const isLight = document.body.dataset.theme === 'light';
-  document.body.dataset.theme = isLight ? 'dark' : 'light';
-  if(!isLight){
-    // Light theme – override quickly by swapping a class
-    document.documentElement.style.setProperty('--bg', '#f7f8fc');
-  }else{
-    document.documentElement.style.removeProperty('--bg');
+
+/* Theme toggle (persists) */
+(function initTheme(){
+  const saved = localStorage.getItem('theme');
+  if(saved==='dark' || (saved===null && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+    document.documentElement.setAttribute('data-theme','dark'); themeBtn.setAttribute('aria-pressed','true');
   }
+})();
+themeBtn.addEventListener('click', ()=>{
+  const isDark = document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  themeBtn.setAttribute('aria-pressed', String(!isDark));
 });
 
-/* Init */
-render();
+/* ---------- Init ---------- */
 renderRail();
-
-/* Accessibility: focus outlines for keyboard nav */
-(function(){
-  let mouse = false;
-  document.addEventListener('mousedown', ()=> mouse=true);
-  document.addEventListener('keydown', e => {
-    if(e.key==='Tab' && mouse){ mouse=false; document.body.classList.add('kbd'); }
-  });
-})();
+render();
 </script>
 </body>
 </html>
