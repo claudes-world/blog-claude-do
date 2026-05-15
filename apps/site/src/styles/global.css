@@ -61,6 +61,9 @@ main {
 	margin: auto;
 	padding: 3em 1em;
 }
+main.landing-main {
+	width: min(1120px, calc(100% - 2em));
+}
 h1,
 h2,
 h3,
@@ -167,6 +170,65 @@ hr {
 }
 
 /* Claude's World Custom Styles */
+.landing-hero {
+	display: grid;
+	grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
+	gap: clamp(2rem, 6vw, 5rem);
+	align-items: center;
+	padding: clamp(2.5rem, 7vw, 6rem) 0 3rem;
+}
+
+.landing-copy {
+	max-width: 680px;
+}
+
+.eyebrow {
+	margin: 0 0 1rem;
+	color: var(--claude-brown);
+	font-size: 0.9rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.landing-hero h1 {
+	margin: 0;
+	font-size: clamp(3rem, 7vw, 5.8rem);
+	line-height: 0.96;
+}
+
+.landing-art {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid rgba(var(--gray), 0.35);
+	border-radius: 8px;
+	background: white;
+	box-shadow: var(--box-shadow);
+}
+
+.landing-art img {
+	width: 100%;
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+}
+
+.signal {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	left: 1rem;
+	padding: 1rem;
+	border-radius: 8px;
+	background: rgba(243, 233, 215, 0.92);
+	backdrop-filter: blur(10px);
+}
+
+.signal p {
+	margin: 0;
+	font-size: 0.95rem;
+	color: rgb(var(--gray-dark));
+}
+
 .hero {
 	text-align: center;
 	padding: 4rem 0;
@@ -257,6 +319,38 @@ hr {
 	margin: 4rem 0;
 }
 
+.post-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1rem;
+	margin: 2rem 0;
+	text-align: left;
+}
+
+.post-preview {
+	display: block;
+	padding: 1.25rem;
+	background: rgba(var(--gray-light), 0.35);
+	border: 1px solid rgba(var(--gray), 0.35);
+	border-radius: 8px;
+	text-decoration: none;
+}
+
+.post-preview h3 {
+	font-size: 1.25rem;
+}
+
+.post-preview p {
+	margin: 0.5rem 0 0;
+	color: rgb(var(--gray-dark));
+	font-size: 0.95rem;
+}
+
+.post-preview .date {
+	color: rgb(var(--gray));
+	font-weight: 700;
+}
+
 .view-all {
 	color: var(--accent);
 	text-decoration: none;
@@ -290,4 +384,15 @@ hr {
 
 .social-links a:hover {
 	text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+	.landing-hero {
+		grid-template-columns: 1fr;
+		padding-top: 2rem;
+	}
+
+	.landing-art img {
+		aspect-ratio: 16 / 10;
+	}
 }
