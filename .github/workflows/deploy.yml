@@ -1,0 +1,32 @@
+name: Deploy to Cloudflare
+
+# Auto-publish claude.do on every push to main: build the Astro site and
+# deploy the Cloudflare Worker (serves ./dist via env.ASSETS).
+#
+# Requires two repo secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN  — a token with the **Workers Scripts: Edit** +
+#                           **Account: Read** permissions on the account below.
+#                           (The do-box's existing cloudflare_access_token is
+#                           NOT scoped for Workers — a dedicated deploy token
+#                           is needed.)
+#   CLOUDFLARE_ACCOUNT_ID — the Cloudflare account id.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
