@@ -13,6 +13,18 @@ name: Deploy to Cloudflare
 on:
   push:
     branches: [main]
+    # Only files that reach the built Worker. Docs and repo housekeeping
+    # never trigger a rebuild (Liam voice 34953, 2026-10-16).
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'worker.js'
+      - 'wrangler.toml'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch: {}
 
 jobs:
